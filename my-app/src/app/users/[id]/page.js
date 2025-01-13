@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
+import Loading from "@/app/loading";
 
 const UserCard = dynamic(() => import("../../components/UserCard"), {
   ssr: false,
@@ -35,12 +36,7 @@ export default function UserDetail({ params }) {
     }
   }, [user]);
 
-  if (loading)
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-50 via-white to-blue-50">
-        <p className="text-lg text-gray-600">Loading...</p>
-      </div>
-    );
+  if (loading) return <Loading /> 
 
   if (error)
     return (

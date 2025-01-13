@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import Head from "next/head";
+import Loading from "../loading";
 
 const PostCard = dynamic(() => import("../components/PostCard"), { ssr: false });
 
@@ -26,7 +27,7 @@ function PostsList() {
     fetchPosts();
   }, []);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Loading />
   if (error) return <p>Error: {error}</p>;
 
   return (

@@ -1,9 +1,10 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Head from "next/head";
+import Loading from "@/app/loading";
 
 function PostsDetails({ params }) {
-  const { id } = params; 
+  const { id } = params;
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -24,33 +25,35 @@ function PostsDetails({ params }) {
     fetchPost();
   }, [id]);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Loading />;
   if (error) return <p>Error: {error}</p>;
 
   return (
     <>
-    <Head>
+      <Head>
         <title>{post.title}</title>
         <meta name="description" content={post.body.slice(0, 150)} />
         <meta property="og:title" content={post.title} />
         <meta property="og:description" content={post.body.slice(0, 150)} />
       </Head>
-    <div className="min-h-screen bg-gradient-to-r from-green-50 via-white to-green-50 p-8 flex items-center justify-center">
-      <div className="max-w-lg w-full bg-white rounded-lg shadow-lg p-6 transform transition-all duration-300 hover:scale-105">
-        <div className="text-center mb-6">
-          <h1 className="text-3xl font-semibold text-gray-800 mb-4">{post.title}</h1>
-          <p className="text-lg text-gray-600">{post.body}</p>
-        </div>
-        <div className="text-center">
-          <button
-            onClick={() => window.history.back()}
-            className="w-full py-2 px-4 bg-green-950 text-white font-bold rounded-lg hover:bg-green-800 transition duration-300"
-          >
-            Back to Posts
-          </button>
+      <div className="min-h-screen bg-gradient-to-r from-green-50 via-white to-green-50 p-8 flex items-center justify-center">
+        <div className="max-w-lg w-full bg-white rounded-lg shadow-lg p-6 transform transition-all duration-300 hover:scale-105">
+          <div className="text-center mb-6">
+            <h1 className="text-3xl font-semibold text-gray-800 mb-4">
+              {post.title}
+            </h1>
+            <p className="text-lg text-gray-600">{post.body}</p>
+          </div>
+          <div className="text-center">
+            <button
+              onClick={() => window.history.back()}
+              className="w-full py-2 px-4 bg-green-950 text-white font-bold rounded-lg hover:bg-green-800 transition duration-300"
+            >
+              Back to Posts
+            </button>
+          </div>
         </div>
       </div>
-    </div>
     </>
   );
 }
