@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 // import RecipeCard from "../components/RecipeCard";
 import Image from "next/image";
 import dynamic from "next/dynamic";
+import Loading from "../loading";
 const RecipeCard = dynamic(() => import("../components/RecipeCard"), { ssr: false });
 
 
@@ -48,7 +49,7 @@ function RecipesList() {
     }
   }, []);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Loading />
   if (error) return <p>Error: {error}</p>;
 
   return (

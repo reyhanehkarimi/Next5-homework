@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import Loading from "@/app/loading";
 
 
 export default function RecipeDetails({ params }) {
@@ -47,7 +48,7 @@ export default function RecipeDetails({ params }) {
     }
   }, [recipe]);
 
-  if (loading) return <div className="text-center py-10">Loading...</div>;
+  if (loading) return <Loading />;
   if (error)
     return <div className="text-center py-10 text-red-500">Error: {error}</div>;
 
